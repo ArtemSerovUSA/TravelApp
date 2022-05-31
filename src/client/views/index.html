@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel App</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      dateFormat: "m/dd/yy"
+    });
+
+  } );
+  </script>
+</head>
+<body>
+<div id = "app">
+  <div class = "header">
+    <h1>Travel App</h1>
+    <p>Enter city you want to travel as well as travel date and in return you will get a current or forecasted weather for that location. And a picture!</p>
+  </div>
+  <div class = "question1">
+    <label for="myCity">What is your travel destination?</label>
+    <input type="text" id="myCity" placeholder="Enter city here">
+  </div>
+  <div class = "question2">
+    <label for="leaving">When are you leaving?</label>
+    <div id="my_date">
+        <input type="text" id="datepicker" placeholder="Click here to select date">
+    </div>
+  </div>
+  <div class = "button">
+    <div id="current_date"></div>
+    <button id="generate" type = "submit" onclick='Client.generate()'> Generate </button>
+  </div>
+  <div class = "main">
+    <div id = "hidden">
+      <div id = "distance"><p>You will get weather here!</p></div>
+      <div id ="blank">
+          <div id = "title"></div>
+          <div id = "scroll">
+            <div id = "weather">
+              <div id = "parameters">
+                  <div id = "date"></div>
+                  <div id = "temp"></div>
+                  <div id = "wind"></div>
+                  <div id = "clouds"></div>
+              </div>
+                <div id = "values"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class = "picture">
+    <div id = "picture">
+      <img src = "./usa.jpg" alt="USA">
+    </div>
+  </div>
+  <div class = "footer">Artem Serov &copy TravelApp 2022</div>
+</div>
+<script>
+   // Check that service workers are supported
+   if ('serviceWorker' in navigator) {
+       // Use the window load event to keep the page load performant
+       window.addEventListener('load', () => {
+           navigator.serviceWorker.register('/service-worker.js');
+       });
+   }
+</script>
+</body>
+</html>
